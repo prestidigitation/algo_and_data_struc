@@ -4,7 +4,7 @@ import random
 
 ## 1. Devise an experiment to verify that the list index operator is O(1)
 
-for i in range(10000, 1000000, 20000):
+for i in range(10000, 1000001, 20000):
     t = timeit.Timer("x[(random.randrange(%d))]"%i,
                      "from __main__ import random, x")
 
@@ -16,7 +16,7 @@ for i in range(10000, 1000000, 20000):
 ## 2. Devise an experiment to verify that get item and set item are O(1)
 ##    for dictionaries.
 
-for i in range(10000, 1000000, 20000):
+for i in range(10000, 1000001, 20000):
     set_dict = timeit.Timer("x[(random.randrange(%d))]"%i,
                             "from __main__ import random, x")
     
@@ -32,5 +32,22 @@ for i in range(10000, 1000000, 20000):
 
 ## 3. Devise an experiment that compares the performance of the del
 ##    operator on lists and dictionaries.
+
+for i in range(10000, 2000001, 20000):
+    test_list = timeit.Timer("del x[(random.randrange(%d))]"%i,
+                             "from __main__ import random, x")
+
+    test_dict = timeit.Timer("del x2[(random.randrange(%d))]"%i,
+                             "from __main__ import random, x2")
+
+    x = list(range(i))
+    x2 = {j:None for j in range(i)}
+
+# Number set to 1, since can't repeat deletion of same index without getting error.
+# Unfortunately, this means more variance in run time numbers, since no averaging.
+    list_del_time = test_list.timeit(number=(1))
+    dict_del_time = test_dict.timeit(number=(1))
+    print("%d, %10.4f, %10.4f" % (i, list_del_time, dict_del_time))
+
 
 
