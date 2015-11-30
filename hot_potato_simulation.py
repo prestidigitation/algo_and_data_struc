@@ -1,5 +1,7 @@
 from implementing_a_queue import Queue
 
+## Takes a list of names and the number of times to enqueue/dequeue
+
 def hot_potato(name_list, num):
     sim_queue = Queue()
     for name in name_list:
