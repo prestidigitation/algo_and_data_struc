@@ -58,10 +58,17 @@ class UnorderedList:
                 current = current.get_next()
 
         if previous is None:
+            current = self.head
+        current_index = 0
+## Currently broken because index is not a declared variable
+        while current_index != index:
+            current_index += 1
+            current = current.get_next()
             self.head = current.get_next()
         else:
             previous.set_next(current.get_next())
 
+# Index method has time complexity O(n) since it traverses the list until it reaches the desired index.
     def index(self, index):
         current = self.head
         current_index = 0
@@ -70,8 +77,13 @@ class UnorderedList:
             current = current.get_next()
         return current.get_data()
 
+# Append method has time complexity O(n) since it traverses the entire list to find the last node.
     def append(self, item):
-        pass
+        current = self.head
+        while current.get_next() is not None:
+            current = current.get_next()
+        new_node = Node(item)
+        current.set_next(new_node)
 
     def insert(self, index, item):
         # current = self.head
