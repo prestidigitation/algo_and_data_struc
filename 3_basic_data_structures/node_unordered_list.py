@@ -62,4 +62,17 @@ class UnorderedList:
         else:
             previous.set_next(current.get_next())
 
+    def append(self, item):
+        pass
 
+
+    def insert(self, item):
+        pass
+
+
+    def index(self, item):
+        pass
+
+
+    def pop(self, item):
+        pass
