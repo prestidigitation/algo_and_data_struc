@@ -68,7 +68,7 @@ class UnorderedList:
         else:
             previous.set_next(current.get_next())
 
-# Index method has time complexity O(n) since it traverses the list until it reaches the desired index.
+# Index method has time complexity O(n) since it traverses the list until it reaches the correct index.
     def index(self, index):
         current = self.head
         current_index = 0
@@ -85,14 +85,43 @@ class UnorderedList:
         new_node = Node(item)
         current.set_next(new_node)
 
+# Insert method has time complexity O(n) since it traverses the list until is reaches the correct index.
+# Inserts into index after the current index. Must fix!
     def insert(self, index, item):
-        # current = self.head
-        # current_index = 0
-        # while current_index != index:
-        #     current_index += 1
-        #     current = current.get_next()
-        pass
+        current = self.head
+        current_index = 0
+        while current_index != index:
+            current_index += 1
+            current = current.get_next()
 
+        temp_node = current.get_next()
+        new_node = Node(item)
+        current.set_next(new_node)
+        new_node.set_next(temp_node)
 
-    def pop(self, index=0):
-        pass
+# Pop method is O(n) since it must traverse the list to find the correct index.
+# Added default index parameter to mimic behavior of regular Python list.pop() method.
+# unordered_list.pop() using default index is O(n) since 2n time complexity is still n.
+    def pop(self, index=None):
+        if index is None:
+            index = self.size() - 1
+
+        current = self.head
+        previous = None
+        current_index = 0
+
+        while current_index != index:
+            current_index += 1
+            previous = current
+            current = current.get_next()
+
+        temp_data = current.get_data()
+        if current_index == 0 and current.get_next() is not None:
+            self.head = current.get_next()
+            return temp_data
+        elif current_index == 0 and current.get_next() is None:
+            self.head = None
+            return temp_data
+        else:
+            previous.set_next(current.get_next())
+            return temp_data
