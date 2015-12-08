@@ -29,74 +29,76 @@ class UnorderedList:
         self.head = temp
 
     def size(self):
-        current = self.head
+        current_node = self.head
         count = 0
-        while current is not None:
+        while current_node is not None:
             count += 1
-            current = current.get_next()
+            current_node = current_node.get_next()
         return count
 
     def search(self, item):
-        current = self.head
+        current_node = self.head
         found = False
-        while current is not None and not found:
-            if current.get_data() == item:
+        while current_node is not None and not found:
+            if current_node.get_data() == item:
                 found = True
             else:
-                current = current.get_next()
+                current_node = current_node.get_next()
         return found
 
     def remove(self, item):
-        current = self.head
-        previous = None
+        current_node = self.head
+        previous_node = None
         found = False
         while not found:
-            if current.get_data() == item:
+            if current_node.get_data() == item:
                 found = True
             else:
-                previous = current
-                current = current.get_next()
+                previous_node = current_node
+                current_node = current_node.get_next()
 
-        if previous is None:
-            current = self.head
+        if previous_node is None:
+            current_node = self.head
         current_index = 0
 ## Currently broken because index is not a declared variable
         while current_index != index:
             current_index += 1
-            current = current.get_next()
-            self.head = current.get_next()
+            current_node = current_node.get_next()
+            self.head = current_node.get_next()
         else:
-            previous.set_next(current.get_next())
+            previous_node.set_next(current_node.get_next())
 
 # Index method has time complexity O(n) since it traverses the list until it reaches the correct index.
     def index(self, index):
-        current = self.head
+        current_node = self.head
         current_index = 0
         while current_index != index:
             current_index += 1
-            current = current.get_next()
-        return current.get_data()
+            current_node = current_node.get_next()
+        return current_node.get_data()
 
 # Append method has time complexity O(n) since it traverses the entire list to find the last node.
     def append(self, item):
-        current = self.head
-        while current.get_next() is not None:
-            current = current.get_next()
+        current_node = self.head
+        while current_node.get_next() is not None:
+            current_node = current_node.get_next()
         new_node = Node(item)
-        current.set_next(new_node)
+        current_node.set_next(new_node)
 
 # Insert method has time complexity O(n) since it traverses the list until is reaches the correct index.
 # Inserts into index after the current index. Must fix!
     def insert(self, index, item):
-        current = self.head
+        current_node = self.head
         current_index = 0
+        previous_node = None
         while current_index != index:
+            previous_node = current_node
             current_index += 1
-            current = current.get_next()
+            current_node = current_node.get_next()
 
-        temp_node = current.get_next()
+        temp_node = current_node.get_next()
         new_node = Node(item)
-        current.set_next(new_node)
+        current_node.set_next(new_node)
         new_node.set_next(temp_node)
 
 # Pop method is O(n) since it must traverse the list to find the correct index.
@@ -106,22 +108,22 @@ class UnorderedList:
         if index is None:
             index = self.size() - 1
 
-        current = self.head
-        previous = None
+        current_node = self.head
+        previous_node = None
         current_index = 0
 
         while current_index != index:
             current_index += 1
-            previous = current
-            current = current.get_next()
+            previous_node = current_node
+            current_node = current_node.get_next()
 
-        temp_data = current.get_data()
-        if current_index == 0 and current.get_next() is not None:
-            self.head = current.get_next()
+        temp_data = current_node.get_data()
+        if current_index == 0 and current_node.get_next() is not None:
+            self.head = current_node.get_next()
             return temp_data
-        elif current_index == 0 and current.get_next() is None:
+        elif current_index == 0 and current_node.get_next() is None:
             self.head = None
             return temp_data
         else:
-            previous.set_next(current.get_next())
+            previous_node.set_next(current_node.get_next())
             return temp_data
