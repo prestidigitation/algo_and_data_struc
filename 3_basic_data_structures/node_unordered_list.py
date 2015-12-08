@@ -86,7 +86,6 @@ class UnorderedList:
         current_node.set_next(new_node)
 
 # Insert method has time complexity O(n) since it traverses the list until is reaches the correct index.
-# Inserts into index after the current index. Must fix!
     def insert(self, index, item):
         current_node = self.head
         current_index = 0
@@ -96,10 +95,13 @@ class UnorderedList:
             current_index += 1
             current_node = current_node.get_next()
 
-        temp_node = current_node.get_next()
-        new_node = Node(item)
-        current_node.set_next(new_node)
-        new_node.set_next(temp_node)
+        if index == 0:
+            self.add(item)
+        else:
+            temp = current_node
+            current_node = Node(item)
+            current_node.set_next(temp)
+            previous_node.set_next(current_node)
 
 # Pop method is O(n) since it must traverse the list to find the correct index.
 # Added default index parameter to mimic behavior of regular Python list.pop() method.
