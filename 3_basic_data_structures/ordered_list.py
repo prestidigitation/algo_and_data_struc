@@ -20,7 +20,19 @@ class OrderedList():
         return count
 
     def search(self, item):
-        pass
+        current = self.head
+        found = False
+        stop = False
+        while current is not None and not found and not stop:
+            if current.get_data() == item:
+                found = True
+            else:
+                if current.get_data() < item:
+                    stop = True
+                else:
+                    current = current.get_next()
+
+        return found
 
     def remove(self):
         current_node = self.head

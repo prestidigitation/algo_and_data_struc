@@ -6,12 +6,12 @@ class TestOrderedList(unittest.TestCase):
 
     def set_up(self):
         self.my_list = OrderedList()
-        # self.my_list.add(31)
-        # self.my_list.add(77)
-        # self.my_list.add(17)
-        # self.my_list.add(93)
-        # self.my_list.add(26)
-        # self.my_list.add(54)
+        self.my_list.add(31)
+        self.my_list.add(77)
+        self.my_list.add(17)
+        self.my_list.add(93)
+        self.my_list.add(26)
+        self.my_list.add(54)
 
         self.values = [(1, 31),
                        (2, 77),
@@ -36,8 +36,9 @@ class TestOrderedList(unittest.TestCase):
             size_counter += 1
             self.assertEqual(size_counter, new_list.size())
 
-    # self.assertEqual(True, False)
-
+    def test_search(self):
+        for num, value in self.values:
+            self.assertTrue(self.values(value))
 
 if __name__ == '__main__':
     unittest.main()
