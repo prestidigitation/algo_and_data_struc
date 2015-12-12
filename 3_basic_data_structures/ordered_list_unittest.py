@@ -4,28 +4,30 @@ import unittest
 
 class TestOrderedList(unittest.TestCase):
 
-    def set_up(self):
-        self.my_list = OrderedList()
-        self.my_list.add(31)
-        self.my_list.add(77)
-        self.my_list.add(17)
-        self.my_list.add(93)
-        self.my_list.add(26)
-        self.my_list.add(54)
+    values = [(1, 31),
+              (2, 77),
+              (3, 17),
+              (4, 93),
+              (5, 26),
+              (6, 54)]
 
-        self.values = [(1, 31),
-                       (2, 77),
-                       (3, 17),
-                       (4, 93),
-                       (5, 26),
-                       (6, 54)]
+    my_list = OrderedList()
+    my_list.add(31)
+    my_list.add(77)
+    my_list.add(17)
+    my_list.add(93)
+    my_list.add(26)
+    my_list.add(54)
 
     def test_is_empty(self):
         new_list = OrderedList()
         self.assertTrue(new_list.is_empty())
 
     def test_add(self):
-        pass
+        new_list = OrderedList()
+        for num, value in self.values:
+            new_list.add(value)
+            self.assertTrue(new_list.size(), num)
 
     def test_size(self):
         new_list = OrderedList()
@@ -37,8 +39,9 @@ class TestOrderedList(unittest.TestCase):
             self.assertEqual(size_counter, new_list.size())
 
     def test_search(self):
+        # Currently failing. Investigate.
         for num, value in self.values:
-            self.assertTrue(self.values(value))
+            self.assertTrue(self.my_list.search(value))
 
 if __name__ == '__main__':
     unittest.main()
