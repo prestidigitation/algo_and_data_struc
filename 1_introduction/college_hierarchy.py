@@ -1,21 +1,45 @@
-class Staff:
+class CollegePerson:
 
-    def __init__(self):
-        self.employed_by_school = True
+    employed_by_school = False
+
+    def __init__(self, name):
+        self.name = name
+
+    def get_name(self):
+        return self.name
+
+    def set_name(self, name):
+        self.name = name
 
 
-class Faculty(Staff):
+class Staff(CollegePerson):
 
-    def __init__(self):
-        Staff.__init__(self)
+    employed_by_school = True
 
-        self.specialty = input("Professor's specialty: ")
+
+class Faculty(CollegePerson):
+
+    employed_by_school = True
+
+    def __init__(self, name, specialty):
+        super().__init__(specialty)
+        self.name = name
+        self.specialty = specialty
+
+    def get_specialty(self):
+        return self.specialty
+
+    def set_specialty(self, specialty):
+        self.specialty = specialty
 
     def lecture(self):
         print("Today I am droning on about %s." % self.specialty)
 
 
-class Student:
-    
-    def __init__(self):
-        self.employed_by_school = False
+class Student(CollegePerson):
+
+    def __init__(self, name, major):
+        super().__init__(major)
+        self.name = name
+        self.major = major
+
