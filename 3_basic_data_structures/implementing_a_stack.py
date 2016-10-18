@@ -22,14 +22,14 @@ class Stack:
         return len(self.items)
 
 
-## Write a function revstring(mystr) that uses a stack to reverse the characters in ## a string.
+# Write a function revstring(mystr) that uses a stack to reverse the characters in ## a string.
 
 def rev_string(my_string):
     stack = Stack()
     reversed_string = []
     for letter in my_string:
         stack.push(letter)
-    while stack.is_empty() == False:
+    while stack.is_empty() is False:
         reversed_string += stack.pop()
     return ''.join(reversed_string)
 

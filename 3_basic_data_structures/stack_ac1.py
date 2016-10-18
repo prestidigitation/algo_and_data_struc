@@ -29,7 +29,7 @@ def rev_string(my_string):
     reversed_string = []
     for letter in my_string:
         stack.push(letter)
-    while stack.is_empty() == False:
+    while stack.is_empty() is not False:
         reversed_string += stack.pop()
     return ''.join(reversed_string)
 

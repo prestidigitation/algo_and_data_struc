@@ -1,4 +1,5 @@
-from implementing_a_deque import Deque
+from .implementing_a_deque import Deque
+
 
 def pal_checker(a_string):
     char_deque = Deque()
@@ -15,5 +16,3 @@ def pal_checker(a_string):
             still_equal = False
         
     return still_equal
-
-

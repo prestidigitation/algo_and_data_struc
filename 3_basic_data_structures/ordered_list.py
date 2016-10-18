@@ -1,7 +1,7 @@
-from node import Node
+from .node import Node
 
 
-class OrderedList():
+class OrderedList:
     def __init__(self):
         self.head = None
 
@@ -50,7 +50,7 @@ class OrderedList():
 
         return found
 
-    def remove(self):
+    def remove(self, item):
         current_node = self.head
         previous_node = None
         found = False

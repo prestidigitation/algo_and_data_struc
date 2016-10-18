@@ -1,4 +1,5 @@
-## Implemented a queue in Python, with O(1) enqueue method and O(n) dequeue method.
+# Implemented a queue in Python, with O(1) enqueue method and O(n) dequeue method.
+
 
 class Queue:
     def __init__(self):
@@ -15,5 +16,3 @@ class Queue:
 
     def size(self):
         return len(self.items)
-
-

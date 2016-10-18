@@ -1,4 +1,4 @@
-from ordered_list import OrderedList
+from .ordered_list import OrderedList
 import unittest
 
 
