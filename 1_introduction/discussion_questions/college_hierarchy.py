@@ -22,8 +22,7 @@ class Faculty(CollegePerson):
     employed_by_school = True
 
     def __init__(self, name, specialty):
-        super().__init__(specialty)
-        self.name = name
+        super().__init__(name)
         self.specialty = specialty
 
     def get_specialty(self):
@@ -39,7 +38,5 @@ class Faculty(CollegePerson):
 class Student(CollegePerson):
 
     def __init__(self, name, major):
-        super().__init__(major)
-        self.name = name
+        super().__init__(name)
         self.major = major
-

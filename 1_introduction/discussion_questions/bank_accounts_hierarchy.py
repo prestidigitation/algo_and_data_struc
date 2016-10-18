@@ -27,9 +27,7 @@ class CheckingAccount(BankAccount):
 class SavingsAccount(BankAccount):
 
     def __init__(self, account_number, balance, rate, withdrawals_this_year=0):
-        super().__init__(balance, rate)
-        self.account_number = account_number
-        self.balance = balance
+        super().__init__(account_number, balance)
         self.interest_rate = rate
         self.withdrawals_this_year = withdrawals_this_year
 
