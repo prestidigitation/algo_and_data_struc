@@ -1,4 +1,4 @@
-from .node import Node
+from node import Node
 
 
 class OrderedList:
@@ -43,11 +43,10 @@ class OrderedList:
             if current.get_data() == item:
                 found = True
             else:
-                if current.get_data() < item:
+                if current.get_data() > item:
                     stop = True
                 else:
                     current = current.get_next()
-
         return found
 
     def remove(self, item):
@@ -67,13 +66,36 @@ class OrderedList:
             previous_node.set_next(current_node.get_next())
 
     def index(self, index):
-        pass
-
-    def append(self, item):
-        pass
-
-    def insert(self, index, item):
-        pass
+        current = self.head
+        count = 0
+        while count < index:
+            count += 1
+            current = current.get_next()
+        return current.get_data()
 
     def pop(self, index=None):
-        pass
+        current_node = self.head
+        size = 0
+        while current_node is not None:
+            size += 1
+            current_node = current_node.get_next()
+        if index is None:
+            index = size - 1
+        current_node = self.head
+        previous_node = None
+        count = 0
+        while count < index:
+            count += 1
+            previous_node = current_node
+            current_node = current_node.get_next()
+
+        deleted_node = current_node
+
+        if previous_node is None:
+            self.head = current_node.get_next()
+        else:
+            previous_node.set_next(current_node.get_next())
+
+        return deleted_node.get_data()
+
+# Could add an Iterator class like in the wikibooks example of linked lists, since utilizes code reusability.
